@@ -1,8 +1,8 @@
 'use strict';
 
-let electron = require('electron');
-let remote = electron.remote;
-let fileUtil = remote.require('./lib/fileUtil');
+const electron = require('electron');
+const remote = electron.remote;
+const fileUtil = remote.require('./lib/fileUtil');
 let baseDir = process.cwd();
 
 let ngModule = angular.module('readUs', []);

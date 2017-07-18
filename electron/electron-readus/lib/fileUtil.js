@@ -1,8 +1,8 @@
 'use strict';
 
-let glob = require('glob');
-let path = require('path');
-let fs = require('fs');
+const glob = require('glob');
+const path = require('path');
+const fs = require('fs');
 
 let fileUtil = {
     fetchReadmeList: function (cb) {
