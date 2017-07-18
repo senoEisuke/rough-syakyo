@@ -1,10 +1,15 @@
 'use strict';
 
-let glob = require('glob');
+const glob = require('glob');
 
-let fileUtil = {
-    fetchReadmeList: function (cb) {
-        glob('node_module/**/README.md', function(err, matches) {
+console.log('fileUtil');
+
+var fileUtil = {
+    fetchReadmeList: function(cb) {
+        console.log('fetchReadmeList');
+        glob('node_modules/**/README.md', function(err, matches) {
+            console.log(err);
+            console.log(matches);
             if (err) {
                 cb(err, null);
                 return;
