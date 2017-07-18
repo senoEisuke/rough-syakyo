@@ -7,7 +7,7 @@ let baseDir = process.cwd();
 
 let ngModule = angular.module('readUs', []);
 
-ngModule.controller('MainController', function ($scope) {
+ngModule.controller('MainController', function($scope) {
     let main = this;
 
     main.getFile = function(file) {
@@ -15,7 +15,8 @@ ngModule.controller('MainController', function ($scope) {
     };
 
     fileUtil.fetchReadmeList(baseDir, function(err, fileList) {
-        if(err) console.error(err);
+        console.log('fetchReadmeList');
+        if (err) console.error(err);
         $scope.$apply(function() {
             main.fileList = fileList;
         });
@@ -29,4 +30,3 @@ ngModule.directive('mdPreview', function() {
         });
     };
 });
-
