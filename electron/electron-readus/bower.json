@@ -1,0 +1,21 @@
+{
+  "name": "electron-readus",
+  "description": "",
+  "main": "main.js",
+  "authors": [
+    "senoEisuke <kazuhiroster@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/senoEisuke/rough-syakyo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "marked": "^0.3.6"
+  }
+}
