@@ -4,18 +4,71 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+let Menu = electron.Menu;
+
+// require('crash-reporter').start(); // cannot find
+
 var mainWindow = null;
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', () => {
     if (process.platform != 'darwin')
         app.quit();
 });
 
-app.on('ready', function() {
+function openWindow(baseDir) {
     mainWindow = new BrowserWindow({ width: 800, height: 600 });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
+}
+
+app.on('ready', () => {
+    Menu.setApplicationMenu(menu);
+    openWindow(process.cwd());
+
 });
+
+var template = [{
+    label: 'ReadUs',
+    submenu: [{
+        label: 'Quit',
+        accelarator: 'Command+Q',
+        click: function() { app.quit(); }
+    }]
+}, {
+    label: 'File',
+    submenu: [{
+        label: 'Open',
+        accelerator: 'Command+O',
+        click: function() {
+            // cannot find
+            require('dialog').showOpenDialog({ properties: ['openDirectory'] }, function(baseDir) {
+                if (baseDir && baseDir[0]) {
+                    openWindow(baseDir[0]);
+                }
+            });
+        }
+    }]
+}, {
+    label: 'View',
+    submenu: [{
+            label: 'Reload',
+            accelarator: 'Command+R',
+            click: function() {
+                BrowserWindow.getFocusedWindow().reload();
+            }
+        },
+        {
+            label: 'Toggle DevTools',
+            accelarator: 'Alt+Command+I',
+            click: function() {
+                BrowserWindow.getFocusedWindow().toggleDevTools();
+            }
+        }
+    ]
+
+}];
+
+var menu = Menu.buildFromTemplate(template);
