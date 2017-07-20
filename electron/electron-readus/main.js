@@ -3,10 +3,13 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const { crashReporter } = require('electron');
+const { dialog } = require('electron');
+
 
 let Menu = electron.Menu;
 
-// require('crash-reporter').start(); // cannot find
+//crashReporter.start(); // companyName is a required option to crashReporter.start
 
 var mainWindow = null;
 
@@ -44,7 +47,7 @@ var template = [{
         accelerator: 'Command+O',
         click: function() {
             // cannot find
-            require('dialog').showOpenDialog({ properties: ['openDirectory'] }, function(baseDir) {
+            dialog.showOpenDialog({ properties: ['openDirectory'] }, function(baseDir) {
                 if (baseDir && baseDir[0]) {
                     openWindow(baseDir[0]);
                 }
