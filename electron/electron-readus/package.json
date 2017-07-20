@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "glob": "^7.1.2"
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0"
   }
 }
